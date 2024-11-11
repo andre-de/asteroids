@@ -6,6 +6,21 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    pygame.init()
+
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    while True:
+
+        #close the window when i click X
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+            
+        screen.fill((0, 0, 0))
+        pygame.display.flip()
+
+
 
 
 
