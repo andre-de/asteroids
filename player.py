@@ -1,5 +1,7 @@
 from circleshape import *
 from constants import *
+from shot import *
+import math
 
 class Player(CircleShape):
 
@@ -34,7 +36,34 @@ class Player(CircleShape):
             self.move(dt)
         if keys[pygame.K_s]:
             self.move(-dt)
+        if keys[pygame.K_SPACE]:
+            self.shoot()
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
+    
+    def shoot(self):
+        shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+    
+        # Convert rotation to radians
+        angle_rad = math.radians(self.rotation)
+    
+        # Calculate velocity components using trigonometry
+        shot.velocity = pygame.Vector2(
+            -math.sin(angle_rad) * PLAYER_SHOOT_SPEED,
+            math.cos(angle_rad) * PLAYER_SHOOT_SPEED)  # Negative because y increases downward
+        
+
+    
+        return shot  # Make sure you're adding this to your shots group!    
+             
+        #shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+        #shot.velocity = pygame.Vector2(0, -1)
+        #shot.velocity = shot.velocity.rotate(-self.rotation)
+        #shot.velocity *= PLAYER_SHOOT_SPEED
+
+
+        #shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+        #shot.velocity = shot.velocity.rotate(-self.rotation)  # Note: might need negative rotation depending on your coordinate system
+        #shot.velocity *= PLAYER_SHOOT_SPEED
