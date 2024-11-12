@@ -7,16 +7,20 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    #init and start clock
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0
     
+    #init containers, add Player to both of them
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
 
+    #create Player and set their position
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    #init screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
@@ -25,24 +29,23 @@ def main():
 
     while True:
 
+        #tick the clock
         dt = clock.tick(60) / 1000
 
-        #close the window when i click X
+        #close the window when I click X
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
             
         screen.fill((0, 0, 0))
         
+        #update all in updatable container, draw all in drawaböe container
         for u in updatable:
-            u.update()
+            u.update(dt)
         for d in drawable:
-            d.draw()
-
-
-        #player.update(dt)
-        #player.draw(screen)
+            d.draw(screen)
         
+        #refresh screen
         pygame.display.flip()
 
         
