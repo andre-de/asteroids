@@ -58,15 +58,11 @@ def main():
             if a.collision(player):
                 print("Game over!")
                 sys.exit()
-
-        
+ 
         #refresh screen
         pygame.display.flip()
 
         
-
-
-
 
 
 
