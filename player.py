@@ -42,6 +42,7 @@ class Player(CircleShape):
             self.shoot()
 
 
+
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
@@ -63,5 +64,5 @@ class Player(CircleShape):
             -math.sin(angle_rad) * PLAYER_SHOOT_SPEED,
             math.cos(angle_rad) * PLAYER_SHOOT_SPEED)  # Negative because y increases downward
         
-        return shot  # Make sure you're adding this to your shots group!    
+        return
              
